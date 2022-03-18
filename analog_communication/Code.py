@@ -1,15 +1,7 @@
-# -*- coding: utf-8 -*-
-"""
-Created on Fri Mar 18 20:41:31 2022
-
-@author: 20812018100700
-"""
 
 # import basis libraries
 import matplotlib.pyplot as plt
 import numpy as np
-
-
 
 
 """
@@ -80,35 +72,37 @@ def S3(t):
 
 def S4(t):
     """ Signal 4"""
-    return   (-4* tri((1/3)*(t-3))+4) * u(-t+6)
+    return   (-4* tri((1/1.5)*(t+1.5))+4)* u(t+3)
 
 def S5(t):
     """ Signal 5 """
-    return  (-4* tri(t-3)+4) * u(-t +6)
+    return  (-4* tri(t-3)+4) * (t == t)
 
 def S6(t):
     """ Signal 6"""
     return 4* (  linear(-0.5*(t-2)) +  linear(0.5*(t-4)) + u(-t)  )
     
+    
 """
     plot the Problems func
 """
 def plot_problems_functions():
-    functions = [S1, S2, S3, S5, S5, S6]
-    t = np.linspace(-1, 7, 10000)
+    functions = [S1, S2, S3, S4, S5, S6]
+    t = np.linspace(-4, 7, 10000)
     
     plt.figure(figsize=(16, 8)) 
     for i, function in enumerate(functions, start = 1):
         plt.subplot(2, 3, i)
         plt.plot(t, function(t), 'black')
         plt.ylim((-0.2, 4.25))
-        plt.xticks(range(-1, 7) )
+        plt.xticks(range(-4, 7) )
         plt.grid()
         plt.title(function.__doc__)
     
     plt.tight_layout()
     plt.savefig('all_fun.jpg')
     plt.show()
+
     
     
 """
@@ -117,7 +111,7 @@ def plot_problems_functions():
     
 def plot_solution_func():
     t = np.linspace(-15, 15, 100000)
-
+    
     # the operation in the function 
     shift = [-t+2, t-1, 2*t-1, -2*t, 0.5*(t-2), -0.5*(t-1)]
     
@@ -128,7 +122,7 @@ def plot_solution_func():
     y_M = [ 2.5, 4.5, 4.5, 4.5, 4.5, 4.5 ]
     
     # Conditioning X axes
-    x_R = [(-5, 3), (1, 8), (0, 5), (-4, 1), (5, 11), (-12, 5)]
+    x_R = [(-5, 3), (1, 8), (0, 5), (-1, 3), (5, 11), (-12, 5)]
     
     plt.figure(figsize=(16, 8)) 
     i = 1
